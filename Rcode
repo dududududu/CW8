@@ -1,11 +1,32 @@
->install.packages("tm")
->install.packages("/dcs/pg11/phil/reuters/tm.corpus.Reuters21578/", repos = NULL, type="source")
->install.packages('lda')
->install.packages('SnowballC')
->install.packages('topicmodels')
+Library
+install.packages("tm")
+install.packages("/dcs/pg11/phil/reuters/tm.corpus.Reuters21578/", repos = NULL, type="source")
+install.packages('lda')
+install.packages('SnowballC')
+install.packages('topicmodels')
  
->require(tm)
->require (tm.corpus.Reuters21578)
->require (lda)
->require (SnowballC)
->require (topicmodels)
+require(tm)
+require (tm.corpus.Reuters21578)
+require (lda)
+require (SnowballC)
+require (topicmodels)
+
+Data Pre-processing
+rt1<-tm_map(rt,removePunctuation)
+rt2<-tm_map(rt1,removeNumbers)
+rt3<-tm_map(rt2,removeWords,stopwords("english"))
+rt4<-tm_map(rt3,tolower)
+rt5<-tm_map(rt4,stemDocument)
+rt6<-tm_map(rt5,stripWhitespace)
+#remove some basic noises frome the data. 
+
+rt6<-tm_map(rt6,removeWords,"said")
+rt6<-tm_map(rt6,removeWords,"reuter")
+rt6<-tm_map(rt6,removeWords,"reuters")
+# remove some common but meaningless words. 
+
+
+
+rt8<-rt7[rowTotals>0,]
+ldart<-LDA(rt8,control=list(alpha=0.1),k=10)
+terms(ldart,10)
