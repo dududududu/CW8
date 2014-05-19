@@ -26,7 +26,7 @@ rt6<-tm_map(rt6,removeWords,"reuters")
 # remove some common but meaningless words. 
 
 
-
+rowTotals <- apply(rt7 , 1, sum)
 rt8<-rt7[rowTotals>0,]
 ldart<-LDA(rt8,control=list(alpha=0.1),k=10)
 terms(ldart,10)
