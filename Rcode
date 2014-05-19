@@ -1,0 +1,11 @@
+>install.packages("tm")
+>install.packages("/dcs/pg11/phil/reuters/tm.corpus.Reuters21578/", repos = NULL, type="source")
+>install.packages('lda')
+>install.packages('SnowballC')
+>install.packages('topicmodels')
+ 
+>require(tm)
+>require (tm.corpus.Reuters21578)
+>require (lda)
+>require (SnowballC)
+>require (topicmodels)
